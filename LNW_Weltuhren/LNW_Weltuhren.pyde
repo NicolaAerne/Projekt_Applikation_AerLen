@@ -1,14 +1,22 @@
-TimeSwitzerland = "22:22"
+TimeSwitzerland = "10:49"
 zeitteile = TimeSwitzerland.split(":")
 AngleMin = 6 * float(zeitteile[1])
 AngleHr = 0.5 * ( 60 * float(zeitteile[0]) + float(zeitteile[1]))
 eingabe = ""
- 
+
+xPosCH = 630
+yPosCH = 250
+
+
+Timezones = ["-12","-11","-10","-9","-8","-7","-6","-5","-4","-3","-2-","-1","0", "+1","+2","+3","+4","+5","+6","+7","+8","+9","+10","+11","+12"]
+
 def setup():
     size(1280, 742)
+    
     #Weltkarte einfügen
     img = loadImage("WorldMap.jpg")
     image(img, 0, 0)
+    
     #Werbung auf Bild übermalen
     noStroke()
     fill(171,225,243)
@@ -18,24 +26,24 @@ def uhrCH():
     stroke(0,0,0)
     strokeWeight(1.75)
     fill(255,255,255)
-    circle(630,250,60)
+    circle(xPosCH,yPosCH,60)
     for angle in range(0, 360, 30):
         pushMatrix()
-        translate(630, 250)
+        translate(xPosCH,yPosCH)
         rotate(radians(angle))
         line(0,23,0,30)
         popMatrix()
-        
+    
     #Minuten- und Stundenzeiger
     pushMatrix()
-    translate(630,250)
+    translate(xPosCH,yPosCH)
     rotate(radians(AngleMin + 6))
     line(0,0,0, -20)
     rotate(radians(-(AngleMin + 6)))
     rotate(radians(AngleHr + 6))
     line(0,0,0, -10)
     popMatrix()
-    
+        
     #Titel Schweiz
     fill(255,255,255)
     rect(601,284,58,15)
@@ -52,7 +60,7 @@ def uhrNY():
         rotate(radians(angle))
         line(0,23,0,30)
         popMatrix()
-        
+    
     #Minuten- und Stundenzeiger
     pushMatrix()
     translate(310,310)
@@ -63,13 +71,13 @@ def uhrNY():
     rotate(radians(AngleHr + 6))
     line(0,0,0, -10)
     popMatrix()
-    
+        
     #Titel NewYork
     fill(255,255,255)
     rect(281,344,58,15)
     fill(0,0,0)
     text("New York", 287, 356)
-    
+
 def uhrTO():
     stroke(0,0,0)
     fill(255,255,255)
@@ -125,7 +133,7 @@ def uhrSI():
     rotate(radians(AngleHr + 6))
     line(0,0,0, -10)
     popMatrix()
-    
+        
 def uhrND():
     stroke(0,0,0)
     fill(255,255,255)
@@ -164,23 +172,23 @@ def uhrND():
 def uhrMO():
     stroke(0,0,0)
     fill(255,255,255)
-    circle(750,200,60)
+    circle(770,200,60)
     for angle in range(0, 360, 30):
         pushMatrix()
-        translate(750, 200)
+        translate(770, 200)
         rotate(radians(angle))
         line(0,23,0,30)
         popMatrix()
         
     #Titel Moskau
     fill(255,255,255)
-    rect(722,234,58,15)
+    rect(742,234,58,15)
     fill(0,0,0)
-    text("Moskau", 731, 246) 
+    text("Moskau", 751, 246) 
     
     #Minuten- und Stundenzeiger
     pushMatrix()
-    translate(750,200)
+    translate(770,200)
     rotate(radians(AngleMin + 6))
     line(0,0,0, -20)
     rotate(radians(-(AngleMin + 6)))
@@ -192,23 +200,23 @@ def uhrMO():
 def uhrLO():
     stroke(0,0,0)
     fill(255,255,255)
-    circle(550,200,60)
+    circle(600,200,60)
     for angle in range(0, 360, 30):
         pushMatrix()
-        translate(550, 200)
+        translate(600, 200)
         rotate(radians(angle))
         line(0,23,0,30)
         popMatrix()
         
     #Titel London
     fill(255,255,255)
-    rect(522,234,58,15)
+    rect(572,234,58,15)
     fill(0,0,0)
-    text("London", 531, 246) 
+    text("London", 581, 246) 
     
     #Minuten- und Stundenzeiger
     pushMatrix()
-    translate(550, 200)
+    translate(600, 200)
     rotate(radians(AngleMin + 6))
     line(0,0,0, -20)
     rotate(radians(-(AngleMin + 6)))
@@ -220,23 +228,23 @@ def uhrLO():
 def uhrBR():
     stroke(0,0,0)
     fill(255,255,255)
-    circle(465,500,60)
+    circle(440,500,60)
     for angle in range(0, 360, 30):
         pushMatrix()
-        translate(465, 500)
+        translate(440, 500)
         rotate(radians(angle))
         line(0,23,0,30)
         popMatrix()
         
     #Titel Brasilia
     fill(255,255,255)
-    rect(438,534,58,15)
+    rect(413,534,58,15)
     fill(0,0,0)
-    text("Brasilia", 448, 546) 
+    text("Brasilia", 423, 546) 
     
     #Minuten- und Stundenzeiger
     pushMatrix()
-    translate(465,500)
+    translate(440,500)
     rotate(radians(AngleMin + 6))
     line(0,0,0, -20)
     rotate(radians(-(AngleMin + 6)))
@@ -244,13 +252,83 @@ def uhrBR():
     rotate(radians(AngleHr + 6))
     line(0,0,0, -10)
     popMatrix()
-    
+
 def draw(): 
-    uhrCH()
+    
+    #Zeitzonen abgrenzen
+    strokeWeight(1)
+    stroke(0,0,0)
+    #x = 630
+    #for i in range(x,1280):
+     #   line(x,0,x,742)
+     #   x = x + 56
+        
+    #for i in range(0,x):
+     #   line(x,0,x,742)
+      #  x = x - 56
+    
+    Timezone = -11
+    xPosTimezone = 50
+    
+
+    text("-11", 30, 20)
+    text("-10", 80, 20)
+    text("-9", 130, 20)
+    text("-8", 180, 20)
+    text("-7", 230, 20)
+    text("-6", 280, 20)
+    text("-5", 335, 20)
+    text("-4", 395, 20)
+    text("-3", 450, 20)
+    text("-2", 500, 20)
+    text("-1", 550, 20)
+    text("0", 600, 20)
+    text("+1", 650, 20)
+    text("+2", 705, 20)
+    text("+3", 765, 20)
+    text("+4", 825, 20)
+    text("+5", 885, 20)
+    text("+6", 940, 20)
+    text("+7", 990, 20)
+    text("+8", 1040, 20)
+    text("+9", 1090, 20)
+    text("+10", 1140, 20)
+    text("+11", 1195, 20)
+    text("+12", 1245, 20)
+
+      
+  
+    line(1230,0,1230,742) 
+    line(1175,0,1175,742)  
+    line(1120,0,1120,742)  
+    line(1070,0,1070,742)  
+    line(1020,0,1020,742)
+    line(970,0,970,742)
+    line(920,0,920,742)
+    line(860,0,860,742)
+    line(800,0,800,742)
+    line(740,0,740,742)
+    line(680,0,680,742)
+    line(630,0,630,742)
+    line(580,0,580,742)
+    line(530,0,530,742)
+    line(480,0,480,742)
+    line(430,0,430,742)
+    line(370,0,370,742)
+    line(310,0,310,742)
+    line(260,0,260,742)
+    line(210,0,210,742)
+    line(160,0,160,742)
+    line(110,0,110,742)
+    line(60,0,60,742)
+    line(10,0,10,742)
     uhrNY()
     uhrMO()
     uhrTO()
     uhrSI()
     uhrBR()
     uhrLO()
-    uhrND()
+
+    
+    
+    
